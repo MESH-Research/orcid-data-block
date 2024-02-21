@@ -8,7 +8,7 @@
   cp .env.sample .env
   ```
 
-- Run docker for the first time. This will fill the `wp` dirctory with the WP source code.
+- Launch the wordpress containers.
 
   ```sh
   docker compose up -d

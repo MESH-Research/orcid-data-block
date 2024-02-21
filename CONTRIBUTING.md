@@ -8,6 +8,12 @@
   cp .env.sample .env
   ```
 
+- Copy the sample docker-compose.yml file (edit as needed).
+
+  ```sh
+  cp .docker-compose.yml.sample .docker-compose.yml
+  ```
+
 - Launch the wordpress containers.
 
   ```sh

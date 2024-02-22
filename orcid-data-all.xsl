@@ -52,88 +52,51 @@
 
     <xsl:template match="/">
 
-        <div id="orcid_data">
+        <article id="orcid_data">
+
+            <!-- START: header-->
             <xsl:if test="$display_header='yes'">
-                <h2>
-                    <div id="orcid_header">
-                        <xsl:value-of select="record:record/person:person/person:name/personal-details:given-names"/>
-                        <!-- &#160; = &nbsp; -->
-                        <xsl:text>&#160;</xsl:text>
-                        <xsl:value-of select="record:record/person:person/person:name/personal-details:family-name"/>
-                        <xsl:text>&#160;</xsl:text>
-                        ORCID Profile
-                    </div>
-                </h2>
+				<h1>ORCID Profile</h1>
             </xsl:if>
+            <!-- END: header-->
 
             <!-- START: personal -->
             <xsl:if test="$display_personal='yes'">
-                <h3>
-                    <div>Biographical Information</div>
-                </h3>
-                <!-- name -->
-                <div>
-                    <xsl:if test="record:record/person:person/person:name">
-                        <h4>
-                            <div>Name Information</div>
-                        </h4>
-                        <xsl:choose>
-                            <xsl:when test="record:record/person:person/person:name/personal-details:credit-name">
-                                <xsl:value-of
-                                        select="record:record/person:person/person:name/personal-details:credit-name"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of
-                                        select="record:record/person:person/person:name/personal-details:given-names"/>
-                                <xsl:text>&#160;</xsl:text>
-                                <xsl:value-of
-                                        select="record:record/person:person/person:name/personal-details:family-name"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <!--
-                        <table border="1">
-                            <tr bgcolor="#9acd32">
-                                <th>Field</th>
-                                <th>Value</th>
-                            </tr>
-                            <tr>
-                                <td>First Name</td>
-                                <td>
-                                    <xsl:value-of select="record:record/person:person/person:name/personal-details:given-names"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Family Name</td>
-                                <td>
-                                    <xsl:value-of select="record:record/person:person/person:name/personal-details:family-name"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Published Name</td>
-                                <td>
-                                    <xsl:value-of select="record:record/person:person/person:name/personal-details:credit-name"/>
-                                </td>
-                            </tr>
-                        </table>
-                        -->
-                    </xsl:if>
-                </div>
+				<h2>Biographical Information</h2>
+
+				<!-- name -->
+                <section id="orcid_names">
+					<h3>Name Information</h3>
+
+					<xsl:if test="record:record/person:person/person:name/personal-details:credit-name">
+						<h4 style="margin-bottom:0">Published Name</h4>
+						<span><xsl:value-of select="record:record/person:person/person:name/personal-details:credit-name"/></span>
+					</xsl:if>
+
+					<h4 style="margin-bottom:0">Full Name</h4>
+					<span><xsl:value-of select="record:record/person:person/person:name/personal-details:given-names"/></span>
+					<xsl:text>&#160;</xsl:text>
+					<xsl:value-of select="record:record/person:person/person:name/personal-details:family-name"/>
+
+					<xsl:if test="record:record/person:person/other-name:other-names/other-name:other-name">
+						<h4 style="margin-bottom:0">Also Known As</h4>
+						<xsl:for-each select="record:record/person:person/other-name:other-names/other-name:other-name">
+							<xsl:value-of select="other-name:content"/> <br/>
+						</xsl:for-each>
+					</xsl:if>
+
+				</section>
 
                 <!-- biography -->
-                <h4>
-                    <div>Biography</div>
-                </h4>
-                <div>
-                    <blockquote>
-                        <xsl:choose>
-                            <xsl:when test="record:record/person:person/person:biography">
-                                <xsl:value-of
-                                        select="record:record/person:person/person:biography/personal-details:content"/>
-                            </xsl:when>
-                            <xsl:otherwise>No biography entered.</xsl:otherwise>
-                        </xsl:choose>
-                    </blockquote>
-                </div>
+                <section id="orcid_bigoraphy">
+                    <h3 style="margin-bottom:0">Biography</h3>
+					<xsl:choose>
+						<xsl:when test="record:record/person:person/person:biography">
+							<p><xsl:value-of select="record:record/person:person/person:biography/personal-details:content"/></p>
+						</xsl:when>
+						<xsl:otherwise><p>No biography entered.</p></xsl:otherwise>
+					</xsl:choose>
+                </section>
 
                 <!-- keywords -->
                 <!--
@@ -157,31 +120,25 @@
                 -->
 
                 <!-- URLs -->
-                <div>URLs</div>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Name</th>
-                            <th>URL</th>
-                        </tr>
-                        <xsl:if test="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
-                            <xsl:for-each
-                                    select="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="researcher-url:url-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="researcher-url:url"/>
-                                    </td>
-                                </tr>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+				<section id="orcid_urls">
+					<h3 style="margin-bottom:0">URLs</h3>
+					<xsl:if test="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
+						<ul style="list-style:none; padding-left:0;">
+							<xsl:for-each select="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
+								<li>
+									<xsl:element name="a">
+										<xsl:attribute name="href">
+											<xsl:value-of select="researcher-url:url"/>
+										</xsl:attribute>
+										<xsl:value-of select="researcher-url:url-name"/>
+									</xsl:element>
+								</li>
+							</xsl:for-each>
+						</ul>
+					</xsl:if>
+                </section>
 
                 <!--
-                <div>Skipping Section: other-name:other-names</div>
                 <div>Skipping Section: external-identifier:external-identifiers</div>
                 <div>Skipping Section: address:addresses</div>
                 -->
@@ -191,40 +148,24 @@
 
             <!-- START: education -->
             <xsl:if test="$display_education='yes'">
-                <h3>
-                    <div>Education</div>
-                </h3>
+				<section id="orcid_education">
+					<h2>Education</h2>
                 <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Organization</th>
-                            <th>Degree</th>
-                            <th>End Date</th>
-                        </tr>
-                        <!-- if at least 1 "activities:educations/education:education-summary" exists -->
-                        <xsl:if test="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
-                                <xsl:sort select="common:organization/common:name" data-type="text"/>
-                                <!-- sort with end  AND start dates, in case there are records with the same end-date -->
-                                <xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
-                                <xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="common:organization/common:name"/>
-                                    </td>
-                                    <!-- Degree/title -->
-                                    <td>
-                                        <xsl:value-of select="common:role-title"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="common:end-date/common:year"/>
-                                    </td>
-                                </tr>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+					<xsl:if test="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
+						<xsl:for-each
+								select="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
+							<xsl:sort select="common:organization/common:name" data-type="text"/>
+							<!-- sort with end  AND start dates, in case there are records with the same end-date -->
+							<xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
+							<xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
+
+							<h3 style="margin-bottom:0;"><xsl:value-of select="common:role-title"/></h3>
+							<xsl:value-of select="common:organization/common:name"/> <br/>
+							<xsl:value-of select="common:end-date/common:year"/>
+						</xsl:for-each>
+					</xsl:if>
+				</div>
+				</section>
             </xsl:if>
             <!-- END: education -->
 
@@ -668,7 +609,7 @@
             </xsl:if>
             <!-- END: services -->
 
-        </div>
+        </article>
 
     </xsl:template>
 

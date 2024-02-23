@@ -397,41 +397,25 @@
 
             <!-- START: qualifications -->
             <xsl:if test="$display_qualifications='yes'">
-                <h3>
-                    <div>Qualifications</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Department Name</th>
-                            <th>Start Year</th>
-                            <th>Organization</th>
-                            <th>URL</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:qualifications/activities:affiliation-group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:qualifications/activities:affiliation-group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of
-                                                select="qualification:qualification-summary/common:department-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="qualification:qualification-summary/common:start-date/common:year"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="qualification:qualification-summary/common:organization/common:name"/>
-                                    </td>
-                                    <td>
+                <section id="orcid_qualifications">
+                    <h2>Qualifications</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:qualifications/activities:affiliation-group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:qualifications/activities:affiliation-group">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="qualification:qualification-summary/common:department-name"/></h3>
+                                <span><xsl:value-of select="qualification:qualification-summary/common:organization/common:name"/></span><br/>
+                                <xsl:element name="a">
+                                    <xsl:attribute name="href">
                                         <xsl:value-of select="qualification:qualification-summary/common:url"/>
-                                    </td>
-                                </tr>
+                                    </xsl:attribute>
+                                    <xsl:value-of select="qualification:qualification-summary/common:url"/>
+                                </xsl:element><br/>
+                                <span><xsl:value-of select="qualification:qualification-summary/common:start-date/common:year"/></span><br/>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No qualifications information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: qualificationss -->
 

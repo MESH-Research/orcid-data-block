@@ -205,71 +205,48 @@
 
             <!-- START: works (activities-group) -->
             <xsl:if test="$display_works='yes'">
-                <h3>
-                    <div>Works</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Work Category and Type</th>
-                            <th>Title</th>
-                            <th>Journal/Conference/Publisher Title</th>
-                            <th>Publication Date</th>
-                            <!-- multiple values-->
-                            <th>Identifier URLs</th>
-                        </tr>
-                        <!-- if at least 1 "activities:works/activities:group" exists -->
-                        <xsl:if test="record:record/activities:activities-summary/activities:works/activities:group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:works/activities:group">
+                <section id="orcid_work">
+                    <h2>Works</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:works/activities:group">
+                            <!-- if at least 1 "activities:works/activities:group" exists -->
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:works/activities:group">
+                                <xsl:sort select="work:work-summary/common:publication-date/common:year" data-type="number" order="descending"/>
                                 <xsl:sort select="work:work-summary/work:type" data-type="text"/>
-                                <xsl:sort select="work:work-summary/common:publication-date/common:year"
-                                          data-type="number" order="descending"/>
                                 <!-- -->
                                 <!-- IF statement(s) here as a filter -->
                                 <!-- work type -->
                                 <xsl:if test="$works_type='all' or $works_type=work:work-summary/work:type">
                                     <!-- publication year-->
                                     <!-- there's no >= so we need to do > OR = in 2 parts -->
-                                    <xsl:if
-                                            test="work:work-summary/common:publication-date/common:year &gt; $works_start_year
-                                        or
-                                        work:work-summary/common:publication-date/common:year = $works_start_year">
-                                        <tr>
-                                            <td>
-                                                <xsl:value-of select="work:work-summary/work:type"/>
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="work:work-summary/work:title/common:title"/>
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="work:work-summary/work:journal-title"/>
-                                            </td>
-                                            <td>
-                                                <xsl:value-of select="work:work-summary/common:publication-date/common:year"/>
-                                            </td>
-                                            <!-- if at least 1 "common:external-ids/common:external-id" exists -->
-                                            <td>
-                                                <xsl:if test="work:work-summary/common:external-ids/common:external-id">
-                                                    <!-- we only want the URLs-->
-                                                    <xsl:for-each
-                                                            select="work:work-summary/common:external-ids/common:external-id">
-                                                        <!-- there may be multiple values so stick in a <br> -->
+                                    <xsl:if test="work:work-summary/common:publication-date/common:year &gt; $works_start_year or work:work-summary/common:publication-date/common:year = $works_start_year">
+                                        <h3 style="margin-bottom:0"><xsl:value-of select="work:work-summary/work:title/common:title"/></h3>
+                                        <span><xsl:value-of select="work:work-summary/work:journal-title"/></span><br/>
+                                        <span>Type: <xsl:value-of select="work:work-summary/work:type"/></span><br/>
+                                        <span><xsl:value-of select="work:work-summary/common:publication-date/common:year"/></span>
+                                        <!-- if at least 1 "common:external-ids/common:external-id" exists -->
+                                        <xsl:if test="work:work-summary/common:external-ids/common:external-id">
+                                            <ul style="list-style:none; padding-left:0; margin-top:0">
+                                            <xsl:for-each select="work:work-summary/common:external-ids/common:external-id">
+                                                <li>
+                                                    <xsl:element name="a">
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="common:external-id-url"/>
+                                                        </xsl:attribute>
                                                         <xsl:value-of select="common:external-id-url"/>
-                                                        <xsl:if test="common:external-id-url">
-                                                            <br/>
-                                                        </xsl:if>
-                                                    </xsl:for-each>
-                                                </xsl:if>
-                                            </td>
-                                        </tr>
+                                                    </xsl:element>
+                                                </li>
+                                            </xsl:for-each>
+                                            </ul>
+                                        </xsl:if>
                                     </xsl:if>
                                 </xsl:if>
                                 <!-- end IF filters -->
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No works information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: works -->
 

@@ -89,7 +89,7 @@
                 </section>
 
                 <!-- biography -->
-                <section id="orcid_bigoraphy">
+                <section id="orcid_biography">
                     <h3 style="margin-bottom:0">Biography</h3>
                     <xsl:choose>
                         <xsl:when test="record:record/person:person/person:biography">

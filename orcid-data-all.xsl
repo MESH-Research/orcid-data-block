@@ -252,42 +252,42 @@
 
             <!-- START: fundings -->
             <xsl:if test="$display_fundings='yes'">
-                <h3>
-                    <div>Funding Sources</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Title of Funded Project</th>
-                            <th>Funding Agency/Name</th>
-                            <th>Funding Type</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:fundings/activities:group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:fundings/activities:group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="funding:funding-summary/funding:title/common:title"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="funding:funding-summary/common:organization/common:name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="funding:funding-summary/funding:type"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="funding:funding-summary/common:start-date/common:year"/>
-                                    </td>
-                                    <td>
+                <section id="orcid_fundings">
+                    <h2>Funding Sources</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:fundings/activities:group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:fundings/activities:group">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="funding:funding-summary/funding:title/common:title"/></h3>
+                                <span><xsl:value-of select="funding:funding-summary/common:organization/common:name"/></span><br/>
+                                <span>Type: <xsl:value-of select="funding:funding-summary/funding:type"/></span><br/>
+                                <span><xsl:value-of select="funding:funding-summary/common:start-date/common:year"/> –
+                                <xsl:choose>
+                                    <xsl:when test="funding:funding-summary/common:end-date/common:year">
                                         <xsl:value-of select="funding:funding-summary/common:end-date/common:year"/>
-                                    </td>
-                                </tr>
+                                    </xsl:when>
+                                    <xsl:otherwise>Present</xsl:otherwise>
+                                </xsl:choose>
+                                </span>
+
+                                <xsl:if test="work:work-summary/common:external-ids/common:external-id">
+                                    <ul style="list-style:none; padding-left:0; margin-top:0">
+                                        <xsl:for-each select="work:work-summary/common:external-ids/common:external-id">
+                                            <li>
+                                                <xsl:element name="a">
+                                                    <xsl:attribute name="href">
+                                                        <xsl:value-of select="common:external-id-url"/>
+                                                    </xsl:attribute>
+                                                    <xsl:value-of select="common:external-id-url"/>
+                                                </xsl:element>
+                                            </li>
+                                        </xsl:for-each>
+                                    </ul>
+                                </xsl:if>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No funding information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: fundings -->
 

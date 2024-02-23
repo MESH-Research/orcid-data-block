@@ -373,40 +373,25 @@
 
             <!-- START: memberships -->
             <xsl:if test="$display_memberships='yes'">
-                <h3>
-                    <div>Memberships</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Department Name</th>
-                            <th>Start Year</th>
-                            <th>Organization</th>
-                            <th>URL</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:memberships/activities:affiliation-group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:memberships/activities:affiliation-group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="membership:membership-summary/common:department-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="membership:membership-summary/common:start-date/common:year"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="membership:membership-summary/common:organization/common:name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="membership:membership-summary/common:url"/>
-                                    </td>
-                                </tr>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                <section id="orcid_memberships">
+                    <h2>Memberships</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:memberships/activities:affiliation-group">
+                        <xsl:for-each select="record:record/activities:activities-summary/activities:memberships/activities:affiliation-group">
+                            <h3 style="margin-bottom:0"><xsl:value-of select="membership:membership-summary/common:department-name"/></h3>
+                            <span><xsl:value-of select="membership:membership-summary/common:organization/common:name"/></span><br/>
+                            <xsl:element name="a">
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="membership:membership-summary/common:url"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="membership:membership-summary/common:url"/>
+                            </xsl:element><br/>
+                            <span><xsl:value-of select="membership:membership-summary/common:start-date/common:year"/></span><br/>
+                        </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise><span>No membership information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: memberships -->
 

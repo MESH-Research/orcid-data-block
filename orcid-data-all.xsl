@@ -349,41 +349,25 @@
 
             <!-- START: invited_positions -->
             <xsl:if test="$display_invited_positions='yes'">
-                <h3>
-                    <div>Invited Positions</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Department Name</th>
-                            <th>Start Year</th>
-                            <th>Organization</th>
-                            <th>URL</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of
-                                                select="invited-position:invited-position-summary/common:department-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="invited-position:invited-position-summary/common:start-date/common:year"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="invited-position:invited-position-summary/common:organization/common:name"/>
-                                    </td>
-                                    <td>
+                <section>
+                    <h2>Invited Positions</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="invited-position:invited-position-summary/common:department-name"/></h3>
+                                <span><xsl:value-of select="invited-position:invited-position-summary/common:organization/common:name"/></span><br/>
+                                <xsl:element name="a">
+                                    <xsl:attribute name="href">
                                         <xsl:value-of select="invited-position:invited-position-summary/common:url"/>
-                                    </td>
-                                </tr>
+                                    </xsl:attribute>
+                                    <xsl:value-of select="invited-position:invited-position-summary/common:url"/>
+                                </xsl:element><br/>
+                                <span><xsl:value-of select="invited-position:invited-position-summary/common:start-date/common:year"/></span>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No invited position information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: invited_positions -->
 

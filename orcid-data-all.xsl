@@ -56,7 +56,7 @@
 
             <!-- START: header-->
             <xsl:if test="$display_header='yes'">
-				<h1>ORCID Profile</h1>
+                <h1>ORCID Profile</h1>
             </xsl:if>
             <!-- END: header-->
 
@@ -119,9 +119,9 @@
                 </div>
                 -->
 
-                <!-- URLs -->
+                <!-- websites -->
 				<section id="orcid_urls">
-					<h3 style="margin-bottom:0">URLs</h3>
+					<h3 style="margin-bottom:0">Websites</h3>
 					<xsl:if test="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
 						<ul style="list-style:none; padding-left:0;">
 							<xsl:for-each select="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
@@ -154,10 +154,10 @@
 					<xsl:if test="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
 						<xsl:for-each
 								select="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
-							<xsl:sort select="common:organization/common:name" data-type="text"/>
 							<!-- sort with end  AND start dates, in case there are records with the same end-date -->
 							<xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
 							<xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
+							<xsl:sort select="common:organization/common:name" data-type="text"/>
 
 							<h3 style="margin-bottom:0;"><xsl:value-of select="common:role-title"/></h3>
 							<xsl:value-of select="common:organization/common:name"/> <br/>

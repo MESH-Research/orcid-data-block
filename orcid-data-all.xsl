@@ -151,21 +151,22 @@
             <xsl:if test="$display_education='yes'">
                 <section id="orcid_education">
                     <h2>Education</h2>
-                <div>
-                    <xsl:if test="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
-                        <xsl:for-each
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
+                            <xsl:for-each
                                 select="record:record/activities:activities-summary/activities:educations/activities:affiliation-group/education:education-summary">
-                            <!-- sort with end  AND start dates, in case there are records with the same end-date -->
-                            <xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
-                            <xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
-                            <xsl:sort select="common:organization/common:name" data-type="text"/>
+                                <!-- sort with end AND start dates, in case there are records with the same end-date -->
+                                <xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
+                                <xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
+                                <xsl:sort select="common:organization/common:name" data-type="text"/>
 
-                            <h3 style="margin-bottom:0;"><xsl:value-of select="common:role-title"/></h3>
-                            <xsl:value-of select="common:organization/common:name"/> <br/>
-                            <xsl:value-of select="common:end-date/common:year"/>
-                        </xsl:for-each>
-                    </xsl:if>
-                </div>
+                                <h3 style="margin-bottom:0;"><xsl:value-of select="common:role-title"/></h3>
+                                <span><xsl:value-of select="common:organization/common:name"/></span><br/>
+                                <span><xsl:value-of select="common:end-date/common:year"/></span>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise><span>No education information</span></xsl:otherwise>
+                    </xsl:choose>
                 </section>
             </xsl:if>
             <!-- END: education -->

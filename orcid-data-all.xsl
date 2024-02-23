@@ -173,47 +173,33 @@
 
             <!-- START: employment -->
             <xsl:if test="$display_employment='yes'">
-                <h3>
-                    <div>Employment</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Organization</th>
-                            <th>Department</th>
-                            <th>Role/Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                        <!-- if at least 1 "activities:employments/employment:employment-summary" exists -->
-                        <xsl:if test="record:record/activities:activities-summary/activities:employments/activities:affiliation-group/employment:employment-summary">
+                <section id="orcid_employment">
+                    <h2>Employment</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:employments/activities:affiliation-group/employment:employment-summary">
                             <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:employments/activities:affiliation-group/employment:employment-summary">
-                                <xsl:sort select="common:organization/common:name" data-type="text"/>
+                                select="record:record/activities:activities-summary/activities:employments/activities:affiliation-group/employment:employment-summary">
                                 <!-- sort with end  AND start dates, in case there are records with the same end-date -->
                                 <xsl:sort select="common:end-date/common:year" data-type="number" order="descending"/>
                                 <xsl:sort select="common:start-date/common:year" data-type="number" order="descending"/>
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="common:organization/common:name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="common:department-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="common:role-title"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="common:start-date/common:year"/>
-                                    </td>
-                                    <td>
+                                <xsl:sort select="common:organization/common:name" data-type="text"/>
+
+                                <h3 style="margin-bottom:0;"><xsl:value-of select="common:organization/common:name"/></h3>
+                                <span><xsl:value-of select="common:start-date/common:year"/> –
+                                <xsl:choose>
+                                    <xsl:when test="common:end-date/common:year">
                                         <xsl:value-of select="common:end-date/common:year"/>
-                                    </td>
-                                </tr>
+                                    </xsl:when>
+                                    <xsl:otherwise>Present</xsl:otherwise>
+                                </xsl:choose>
+                                </span>
+                                <br/>
+                                <span><xsl:value-of select="common:role-title"/> (<xsl:value-of select="common:department-name"/>)</span>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No employment information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: employmant -->
 

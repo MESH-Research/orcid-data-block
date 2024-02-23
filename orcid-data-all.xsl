@@ -74,14 +74,15 @@
                     </xsl:if>
 
                     <h4 style="margin-bottom:0">Full Name</h4>
-                    <span><xsl:value-of select="record:record/person:person/person:name/personal-details:given-names"/></span>
-                    <xsl:text>&#160;</xsl:text>
-                    <xsl:value-of select="record:record/person:person/person:name/personal-details:family-name"/>
+                    <span><xsl:value-of select="record:record/person:person/person:name/personal-details:given-names"/>
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="record:record/person:person/person:name/personal-details:family-name"/></span>
 
                     <xsl:if test="record:record/person:person/other-name:other-names/other-name:other-name">
                         <h4 style="margin-bottom:0">Also Known As</h4>
                         <xsl:for-each select="record:record/person:person/other-name:other-names/other-name:other-name">
-                            <xsl:value-of select="other-name:content"/> <br/>
+
+                            <span><xsl:value-of select="other-name:content"/></span> <br/>
                         </xsl:for-each>
                     </xsl:if>
 

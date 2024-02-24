@@ -426,67 +426,47 @@
                 we do know that there can be MULTIPLE <research-resource:research-resource-summary> within any <activities:group>
             -->
             <xsl:if test="$display_research_resources='yes'">
-                <h3>
-                    <div>Research Resources</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Title</th>
-                            <!--
-                            <th>Organization</th>
-                            -->
-                            <th>Start Year</th>
-                            <th>End Year</th>
-                            <th>URL</th>
-                        </tr>
-                        <!-- START LOOP on <activities:group> -->
-                        <xsl:if test="record:record/activities:activities-summary/activities:research-resources/activities:group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:research-resources/activities:group">
+                <section id="orcid_research_resources">
+                    <h2>Research Resources</h2>
+                    <!-- START LOOP on <activities:group> -->
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:research-resources/activities:group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:research-resources/activities:group">
                                 <!-- <tr><td>INSIDE 1st FOR LOOP</td></tr> -->
                                 <!-- START 2ND LOOP on <research-resource:research-resource-summary> -->
                                 <xsl:if test="research-resource:research-resource-summary">
                                     <xsl:for-each select="research-resource:research-resource-summary">
-
-                                        <!-- -->
-                                        <tr>
-                                            <td>
-                                                <xsl:value-of
-                                                        select="research-resource:proposal/research-resource:title/common:title"/>
-                                            </td>
-                                            <!-- the <research-resource:hosts> can contain multiple organizations -->
-                                            <td>
-                                                <xsl:if test="research-resource:proposal/research-resource:hosts/common:organization">
-                                                    <xsl:for-each
-                                                            select="research-resource:proposal/research-resource:hosts/common:organization">
-                                                        <xsl:value-of select="common:name"/>
-                                                        <br/>
-                                                    </xsl:for-each>
-                                                </xsl:if>
-                                            </td>
-                                            <td>
-                                                <xsl:value-of
-                                                        select="research-resource:proposal/common:start-date/common:year"/>
-                                            </td>
-                                            <td>
-                                                <xsl:value-of
-                                                        select="research-resource:proposal/common:end-date/common:year"/>
-                                            </td>
-                                            <td>
+                                        <h3 style="margin-bottom:0"><xsl:value-of select="research-resource:proposal/research-resource:title/common:title"/></h3>
+                                        <!-- the <research-resource:hosts> can contain multiple organizations -->
+                                        <xsl:if test="research-resource:proposal/research-resource:hosts/common:organization">
+                                            <xsl:for-each select="research-resource:proposal/research-resource:hosts/common:organization">
+                                                <span><xsl:value-of select="common:name"/></span><br/>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <span>
+                                            <xsl:value-of select="research-resource:proposal/common:start-date/common:year"/> –
+                                            <xsl:choose>
+                                                <xsl:when test="research-resource:proposal/common:end-date/common:year">
+                                                    <xsl:value-of select="research-resource:proposal/common:end-date/common:year"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>Present</xsl:otherwise>
+                                            </xsl:choose>
+                                        </span>
+                                        <xsl:element name="a">
+                                            <xsl:attribute name="href">
                                                 <xsl:value-of select="research-resource:proposal/common:url"/>
-                                            </td>
-                                        </tr>
-
-                                        <!-- -->
+                                            </xsl:attribute>
+                                            <xsl:value-of select="research-resource:proposal/common:url"/>
+                                        </xsl:element><br/>
                                     </xsl:for-each>
                                 </xsl:if>
                                 <!-- END 2ND LOOP on <research-resource:research-resource-summary> -->
                             </xsl:for-each>
-                        </xsl:if>
-                        <!-- END LOOP on <activities:group> -->
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No research resources information</span></xsl:otherwise>
+                    </xsl:choose>
+                    <!-- END LOOP on <activities:group> -->
+                </section>
             </xsl:if>
             <!-- END: research_resources -->
 

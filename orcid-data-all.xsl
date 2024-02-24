@@ -492,38 +492,25 @@
 
             <!-- START: services -->
             <xsl:if test="$display_services='yes'">
-                <h3>
-                    <div>Services</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Department Name</th>
-                            <th>Start Year</th>
-                            <th>Organization</th>
-                            <th>URL</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of select="service:service-summary/common:department-name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="service:service-summary/common:start-date/common:year"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of select="service:service-summary/common:organization/common:name"/>
-                                    </td>
-                                    <td>
+                <section id="orcid_services">
+                    <h2>Services</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="service:service-summary/common:department-name"/></h3>
+                                <span><xsl:value-of select="service:service-summary/common:organization/common:name"/></span><br/>
+                                <xsl:element name="a">
+                                    <xsl:attribute name="href">
                                         <xsl:value-of select="service:service-summary/common:url"/>
-                                    </td>
-                                </tr>
+                                    </xsl:attribute>
+                                    <xsl:value-of select="service:service-summary/common:url"/>
+                                </xsl:element><br/>
+                                <span><xsl:value-of select="service:service-summary/common:start-date/common:year"/></span><br/>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No services information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: services -->
 

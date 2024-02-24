@@ -293,63 +293,36 @@
 
             <!-- START: peer-reviews -->
             <xsl:if test="$display_peer_reviews='yes'">
-                <h3>
-                    <div>Peer Reviews</div>
-                </h3>
-                <div>
-                    <table border="1">
-                        <tr bgcolor="#9acd32">
-                            <th>Convening Organization Name</th>
-                            <th>City</th>
-                            <th>Region</th>
-                            <th>Country</th>
-                            <th>Completion Year</th>
-                            <th>Completion Month</th>
-                            <th>Completion Day</th>
-                        </tr>
-                        <xsl:if test="record:record/activities:activities-summary/activities:peer-reviews/activities:group/activities:peer-review-group">
-                            <xsl:for-each
-                                    select="record:record/activities:activities-summary/activities:peer-reviews/activities:group/activities:peer-review-group">
-                                <tr>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:convening-organization/common:name"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:city"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:region"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:country"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:completion-date/common:year"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:completion-date/common:month"/>
-                                    </td>
-                                    <td>
-                                        <xsl:value-of
-                                                select="peer-review:peer-review-summary/peer-review:completion-date/common:day"/>
-                                    </td>
-                                </tr>
+                <section id="orcid_peer_reviews">
+                    <h2>Peer Reviews</h2>
+                    <xsl:choose>
+                        <xsl:when test="record:record/activities:activities-summary/activities:peer-reviews/activities:group/activities:peer-review-group">
+                            <xsl:for-each select="record:record/activities:activities-summary/activities:peer-reviews/activities:group/activities:peer-review-group">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="peer-review:peer-review-summary/peer-review:convening-organization/common:name"/></h3>
+                                <span>
+                                    <xsl:value-of select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:city"/>
+                                    <xsl:text>, </xsl:text>
+                                    <xsl:value-of select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:region"/>
+                                </span><br/>
+                                <span><xsl:value-of select="peer-review:peer-review-summary/peer-review:convening-organization/common:address/common:country"/></span>
+                                <span>
+                                    <xsl:value-of select="peer-review:peer-review-summary/peer-review:completion-date/common:year"/>
+                                    <xsl:text>-</xsl:text>
+                                    <xsl:value-of select="peer-review:peer-review-summary/peer-review:completion-date/common:month"/>
+                                    <xsl:text>-</xsl:text>
+                                    <xsl:value-of select="peer-review:peer-review-summary/peer-review:completion-date/common:day"/>
+                                </span>
                             </xsl:for-each>
-                        </xsl:if>
-                    </table>
-                </div>
+                        </xsl:when>
+                        <xsl:otherwise><span>No peer review information</span></xsl:otherwise>
+                    </xsl:choose>
+                </section>
             </xsl:if>
             <!-- END: peer-reviews -->
 
             <!-- START: invited_positions -->
             <xsl:if test="$display_invited_positions='yes'">
-                <section>
+                <section id="orcid_invited_positions">
                     <h2>Invited Positions</h2>
                     <xsl:choose>
                         <xsl:when test="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">

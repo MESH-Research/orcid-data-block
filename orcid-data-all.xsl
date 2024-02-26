@@ -182,7 +182,8 @@
                                 <xsl:sort select="common:organization/common:name" data-type="text"/>
 
                                 <h3 style="margin-bottom:0;"><xsl:value-of select="common:organization/common:name"/></h3>
-                                <span><xsl:value-of select="common:start-date/common:year"/> –
+                                <span><xsl:value-of select="common:start-date/common:year"/>
+                                <xsl:text> – </xsl:text>
                                 <xsl:choose>
                                     <xsl:when test="common:end-date/common:year">
                                         <xsl:value-of select="common:end-date/common:year"/>
@@ -265,7 +266,8 @@
                                 <h3 style="margin-bottom:0"><xsl:value-of select="funding:funding-summary/funding:title/common:title"/></h3>
                                 <span><xsl:value-of select="funding:funding-summary/common:organization/common:name"/></span><br/>
                                 <span>Type: <xsl:value-of select="funding:funding-summary/funding:type"/></span><br/>
-                                <span><xsl:value-of select="funding:funding-summary/common:start-date/common:year"/> –
+                                <span><xsl:value-of select="funding:funding-summary/common:start-date/common:year"/>
+                                <xsl:text> – </xsl:text>
                                 <xsl:choose>
                                     <xsl:when test="funding:funding-summary/common:end-date/common:year">
                                         <xsl:value-of select="funding:funding-summary/common:end-date/common:year"/>
@@ -428,7 +430,8 @@
                                             </xsl:for-each>
                                         </xsl:if>
                                         <span>
-                                            <xsl:value-of select="research-resource:proposal/common:start-date/common:year"/> –
+                                            <xsl:value-of select="research-resource:proposal/common:start-date/common:year"/>
+                                            <xsl:text> – </xsl:text>
                                             <xsl:choose>
                                                 <xsl:when test="research-resource:proposal/common:end-date/common:year">
                                                     <xsl:value-of select="research-resource:proposal/common:end-date/common:year"/>

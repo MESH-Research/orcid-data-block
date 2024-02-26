@@ -191,7 +191,11 @@
                                 </xsl:choose>
                                 </span>
                                 <br/>
-                                <span><xsl:value-of select="common:role-title"/> (<xsl:value-of select="common:department-name"/>)</span>
+                                <span><xsl:value-of select="common:role-title"/>
+                                <xsl:if test="common:department-name">
+                                    (<xsl:value-of select="common:department-name"/>)
+                                </xsl:if>
+                                </span>
                             </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise><span>No employment information</span></xsl:otherwise>

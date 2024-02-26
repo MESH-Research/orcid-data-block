@@ -332,14 +332,20 @@
                     <xsl:choose>
                         <xsl:when test="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
                             <xsl:for-each select="record:record/activities:activities-summary/activities:invited-positions/activities:affiliation-group">
-                                <h3 style="margin-bottom:0"><xsl:value-of select="invited-position:invited-position-summary/common:department-name"/></h3>
-                                <span><xsl:value-of select="invited-position:invited-position-summary/common:organization/common:name"/></span><br/>
-                                <xsl:element name="a">
-                                    <xsl:attribute name="href">
+                                <h3 style="margin-bottom:0"><xsl:value-of select="invited-position:invited-position-summary/common:role-title"/></h3>
+                                <span><xsl:value-of select="invited-position:invited-position-summary/common:organization/common:name"/>
+                                    <xsl:if test="invited-position:invited-position-summary/common:department-name">
+                                        (<xsl:value-of select="invited-position:invited-position-summary/common:department-name"/>)
+                                    </xsl:if>
+                                </span><br/>
+                                <xsl:if test="invited-position:invited-position-summary/common:url">
+                                    <xsl:element name="a">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="invited-position:invited-position-summary/common:url"/>
+                                        </xsl:attribute>
                                         <xsl:value-of select="invited-position:invited-position-summary/common:url"/>
-                                    </xsl:attribute>
-                                    <xsl:value-of select="invited-position:invited-position-summary/common:url"/>
-                                </xsl:element><br/>
+                                    </xsl:element><br/>
+                                </xsl:if>
                                 <span><xsl:value-of select="invited-position:invited-position-summary/common:start-date/common:year"/></span>
                             </xsl:for-each>
                         </xsl:when>

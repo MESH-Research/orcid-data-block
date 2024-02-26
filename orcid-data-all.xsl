@@ -461,15 +461,33 @@
                     <xsl:choose>
                         <xsl:when test="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
                             <xsl:for-each select="record:record/activities:activities-summary/activities:services/activities:affiliation-group">
-                                <h3 style="margin-bottom:0"><xsl:value-of select="service:service-summary/common:department-name"/></h3>
-                                <span><xsl:value-of select="service:service-summary/common:organization/common:name"/></span><br/>
-                                <xsl:element name="a">
-                                    <xsl:attribute name="href">
+                                <xsl:if test="service:service-summary/common:organization/common:name">
+                                    <xsl:element name="h3">
+                                        <xsl:attribute name="style">margin-bottom:0</xsl:attribute>
+                                        <xsl:value-of select="service:service-summary/common:organization/common:name"/>
+                                    </xsl:element>
+                                </xsl:if>
+                                <xsl:if test="service:service-summary/common:role-title">
+                                    <span><xsl:value-of select="service:service-summary/common:role-title"/></span><br/>
+                                </xsl:if>
+                                <xsl:if test="service:service-summary/common:url">
+                                    <xsl:element name="a">
+                                        <xsl:attribute name="href">
+                                            <xsl:value-of select="service:service-summary/common:url"/>
+                                        </xsl:attribute>
                                         <xsl:value-of select="service:service-summary/common:url"/>
-                                    </xsl:attribute>
-                                    <xsl:value-of select="service:service-summary/common:url"/>
-                                </xsl:element><br/>
-                                <span><xsl:value-of select="service:service-summary/common:start-date/common:year"/></span><br/>
+                                    </xsl:element><br/>
+                                </xsl:if>
+                                <span>
+                                    <xsl:value-of select="service:service-summary/common:start-date/common:year"/>
+                                    <xsl:text> – </xsl:text>
+                                    <xsl:choose>
+                                        <xsl:when test="service:service-summary/common:end-date/common:year">
+                                            <xsl:value-of select="service:service-summary/common:end-date/common:year"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>Present</xsl:otherwise>
+                                    </xsl:choose>
+                                </span>
                             </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise><span>No services information</span></xsl:otherwise>

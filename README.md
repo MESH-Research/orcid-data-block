@@ -6,29 +6,21 @@ The plugin pulls data from [ORCiD](http://orcid.org) based on the user's ORCiD I
 Any facet of the user's ORCiD can be added to WP pages or posts using WP shortcodes or as blocks
 using the Gutenberg block editor.
 
+## Prerequisite
+
+* git
+* Docker or Docker Desktop
+
 ## Installation
 
-- Create a development directory.
-- Clone the repo inside that folder. This will create a `orcid-data-block` folder.
-- Copy the contents of `orcid-data-block/docker` into the development directory.
-- Setup and run Docker
-  - Read the `README-docker.md` file for instructions.
-- Make sure `npm` is installed.
-- Copy the plugin files into the WP plugins folder:
-  - `cp -r orcid-data-block wp/wp-content/plugins/`
-- cd to `orcid-data-block` and run:
-  ```sh
-  cd wp/wp-content/plugins/orcid-data-block
-  # install node.js dependencies
-  npm install
-  # run one of the following
-  npm run start   # for development
-  npm run build   # for production
-  ```
-- Activate the plugin from Wordpress.
-- This will create a "My ORCiD Profile" page in the dashboard where you can
-  enter your ORCiD ID.
-- You can then add short codes or blocks to any page or post.
+1. Clone this repository from GitHub onto your computer
+2. Open a command-line and navigate to the directory of the cloned repository
+3. Run this command to copy the environment variables file:
+    * `cp .env.sample .env`
+4. Run this command to copy the Docker configuration file:
+    * `cp docker-compose.yml.sample docker-compose.yml`
+    * Optionally, uncomment the code in `docker-compose.yml` to enable a persistent database
+5. Run Docker `docker-compose up --detach`
 
 ## Wordpress Debugging
 

@@ -222,22 +222,26 @@
                                     <!-- there's no >= so we need to do > OR = in 2 parts -->
                                     <xsl:if test="work:work-summary/common:publication-date/common:year &gt; $works_start_year or work:work-summary/common:publication-date/common:year = $works_start_year">
                                         <h3 style="margin-bottom:0"><xsl:value-of select="work:work-summary/work:title/common:title"/></h3>
-                                        <span><xsl:value-of select="work:work-summary/work:journal-title"/></span><br/>
+                                        <xsl:if test="work:work-summary/work:journal-title">
+                                            <span><xsl:value-of select="work:work-summary/work:journal-title"/></span><br/>
+                                        </xsl:if>
                                         <span>Type: <xsl:value-of select="work:work-summary/work:type"/></span><br/>
                                         <span><xsl:value-of select="work:work-summary/common:publication-date/common:year"/></span>
                                         <!-- if at least 1 "common:external-ids/common:external-id" exists -->
                                         <xsl:if test="work:work-summary/common:external-ids/common:external-id">
                                             <ul style="list-style:none; padding-left:0; margin-top:0">
-                                            <xsl:for-each select="work:work-summary/common:external-ids/common:external-id">
-                                                <li>
-                                                    <xsl:element name="a">
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="common:external-id-url"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="common:external-id-url"/>
-                                                    </xsl:element>
-                                                </li>
-                                            </xsl:for-each>
+                                                <xsl:for-each select="work:work-summary/common:external-ids/common:external-id">
+                                                    <xsl:if test="common:external-id-url">
+                                                        <li>
+                                                            <xsl:element name="a">
+                                                                <xsl:attribute name="href">
+                                                                    <xsl:value-of select="common:external-id-url"/>
+                                                                </xsl:attribute>
+                                                                <xsl:value-of select="common:external-id-url"/>
+                                                            </xsl:element>
+                                                        </li>
+                                                    </xsl:if>
+                                                </xsl:for-each>
                                             </ul>
                                         </xsl:if>
                                     </xsl:if>

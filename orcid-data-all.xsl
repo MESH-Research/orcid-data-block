@@ -120,19 +120,24 @@
                     <section class="orcid_data--section orcid_data--subsection orcid_data--websites">
                         <h3 style="margin-bottom:0">Websites</h3>
                         <xsl:choose>
-                            <xsl:when test="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
+                            <xsl:when test="record:record/person:person/researcher-url:researcher-urls">
                                 <ul style="list-style:none; padding-left:0;">
                                     <xsl:for-each select="record:record/person:person/researcher-url:researcher-urls/researcher-url:researcher-url">
-                                        <xsl:if test="record:record/person:person/researcher-url:researcher-urls">
-                                            <li>
-                                                <xsl:element name="a">
-                                                    <xsl:attribute name="href">
+                                        <li>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of select="researcher-url:url"/>
+                                                </xsl:attribute>
+                                                <xsl:choose>
+                                                    <xsl:when test="researcher-url:url-name">
+                                                        <xsl:value-of select="researcher-url:url-name"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
                                                         <xsl:value-of select="researcher-url:url"/>
-                                                    </xsl:attribute>
-                                                    <xsl:value-of select="researcher-url:url-name"/>
-                                                </xsl:element>
-                                            </li>
-                                        </xsl:if>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:element>
+                                        </li>
                                     </xsl:for-each>
                                 </ul>
                             </xsl:when>

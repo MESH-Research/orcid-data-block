@@ -20,7 +20,8 @@ using the Gutenberg block editor.
 4. Run this command to copy the Docker configuration file:
     * `cp docker-compose.yml.sample docker-compose.yml`
     * Optionally, uncomment the code in `docker-compose.yml` to enable a persistent database
-5. Run Docker `docker-compose up --detach`
+5. If using Docker Desktop, open it
+6. Run this command `docker-compose up --detach`
 
 ## Wordpress Debugging
 

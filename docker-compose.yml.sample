@@ -1,31 +1,28 @@
 version: '3.3'
 
 services:
-   db:
-     image: mysql:latest
+  db:
+    image: mysql:latest
 #Uncomment to persist data (and add a volume definition at the bottom of this file)
-    #  volumes:
-    #    - db_data:/var/lib/mysql
-     environment:
-       - MYSQL_RANDOM_ROOT_PASSWORD='yes'
-       - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
-       - MYSQL_USER=${WORDPRESS_DB_USER}
-       - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
-   wordpress:
-     depends_on:
-       - db
-     build: .
-     volumes:
-       - ./:/var/www/html/wp-content/plugins/orcid-data-block
-     ports:
-       - "8000:80"
-     environment:
-       - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-       - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-       - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
-       - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+#     volumes:
+#       - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD='yes'
+      - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
+      - MYSQL_USER=${WORDPRESS_DB_USER}
+      - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
+  wordpress:
+    depends_on:
+      - db
+    build: .
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/orcid-data-block
+    ports:
+      - "8000:80"
+    environment:
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
 # volumes:
-#     db_data:
-
-
-
+#   db_data:

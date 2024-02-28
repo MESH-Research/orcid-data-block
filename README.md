@@ -9,19 +9,24 @@ using the Gutenberg block editor.
 ## Prerequisite
 
 * git
+* npm
 * Docker or Docker Desktop
 
 ## Installation
 
 1. Clone this repository from GitHub onto your computer
 2. Open a command-line and navigate to the directory of the cloned repository
-3. Run this command to copy the environment variables file:
+3. Ensure npm has all installed dependencies and run:
+    * `npm i`
+4. Run the project's build script:
+    * `npm run build`
+5. Run this command to copy the environment variables file:
     * `cp .env.sample .env`
-4. Run this command to copy the Docker configuration file:
+6. Run this command to copy the Docker configuration file:
     * `cp docker-compose.yml.sample docker-compose.yml`
     * Optionally, uncomment the code in `docker-compose.yml` to enable a persistent database
-5. If using Docker Desktop, open it
-6. Run this command `docker-compose up --detach`
+7. If using Docker Desktop, open it
+8. Run this command `docker-compose up --detach`
 
 ## Wordpress Debugging
 

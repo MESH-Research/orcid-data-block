@@ -24,9 +24,6 @@
 /**
  *  orcid + orcid_data_block + block_init ()
 */
-
-
-/** Commenting this out because it's forcing an error 
 function orcid_orcid_data_block_block_init() {
   // automatically load dependencies and version
   $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
@@ -44,7 +41,7 @@ function orcid_orcid_data_block_block_init() {
   );
 }
 add_action( 'init', 'orcid_orcid_data_block_block_init' );
-*/
+
 /**
  * Callback function to display the data from ORCiD:section
  *

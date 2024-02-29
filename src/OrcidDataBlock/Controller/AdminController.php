@@ -67,6 +67,7 @@ class AdminController extends Controller {
                 }
                 $this->set('orcid_id', $new_id);
                 update_user_meta($user, '_orcid_id', $new_id);
+                $this->set('success', true);
             }
         }
     }

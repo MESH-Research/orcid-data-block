@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Orcid Data Block
+ * Orcid Data Block
  *
  * @package OrcidDataBlock
  */

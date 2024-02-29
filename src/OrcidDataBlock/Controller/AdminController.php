@@ -39,6 +39,7 @@ class AdminController extends Controller {
     public function settings_page() {
         $user_ob = wp_get_current_user();
         $user    = $user_ob->ID;
+        $this->set('orcid_id', '');
 
         if (! empty(get_user_meta($user, '_orcid_id', true))) {
                 $this->set('orcid_id', get_user_meta($user, '_orcid_id', true));

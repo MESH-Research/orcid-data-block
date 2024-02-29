@@ -12,7 +12,7 @@
     <!-- wp_nonce_field used for security (see above comment) -->
     <?php wp_nonce_field('orcid_nonce'); ?>
     <!-- need to replace table with CSS -->
-    <?php if ($success) : ?>
+    <?php if (!empty($success)) : ?>
         <div class="updated"><p><?php echo __('ORCiD ID updated.', 'orcid-data-block'); ?></p></div>
     <?php endif; ?>
     <table>
@@ -20,7 +20,7 @@
         <td><label for="orcid_id">ORCiD ID</label></td>
         <td>
             <input type="text" name="orcid_id" id="orcid_id" value="<?php echo esc_attr($orcid_id); ?>">
-            <?php if ($orcid_error) : ?>
+            <?php if (!empty($orcid_error)) : ?>
                 <div class="error"><?php echo $orcid_error; ?></div>
             <?php endif; ?>
             </td>

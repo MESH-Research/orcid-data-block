@@ -1,28 +1,28 @@
 {
-        "$schema": "https://schemas.wp.org/trunk/block.json",
-        "apiVersion": 2,
-        "name": "orcid/orcid-data-block",
-        "version": "0.1.0",
-        "title": "ORCiD Data",
-        "category": "embed",
-        "icon": "info-outline",
-        "description": "Add your information from ORCiD.org to your pages.",
-        "supports": {
-                "html": false
-        },
-        "attributes": {
-          "section": {
-            "type": "string"
-          },
-          "worksType": { 
-            "type": "string"
-          },
-          "worksStartYear": { 
-            "type": "string"
-          }
-        },
-        "textdomain": "orcid-data-block",
-        "editorScript": "file:./index.js",
-        "editorStyle": "file:./index.css",
-        "style": "file:./style-index.css"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "orcid/orcid-data-block",
+	"version": "0.1.0",
+	"title": "ORCiD Data",
+	"category": "embed",
+	"icon": "info-outline",
+	"description": "Add your information from ORCiD.org to your pages.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"section": {
+			"type": "string"
+		},
+		"worksType": {
+			"type": "string"
+		},
+		"worksStartYear": {
+			"type": "string"
+		}
+	},
+	"textdomain": "orcid-data-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
 }

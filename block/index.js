@@ -3,9 +3,9 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
- import { registerBlockType } from '@wordpress/blocks';
- //import { createElement } from '@wordpress/element';
- 
+import { registerBlockType } from '@wordpress/blocks';
+// import { createElement } from '@wordpress/element';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing `style` keyword are bundled together. The code used
@@ -29,7 +29,7 @@ import { embedOrcidIcon } from './icons.js';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
-  icon: embedOrcidIcon,
+	icon: embedOrcidIcon,
 	/**
 	 * @see ./edit.js
 	 */

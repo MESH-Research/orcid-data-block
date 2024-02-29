@@ -12,8 +12,8 @@
     <!-- wp_nonce_field used for security (see above comment) -->
     <?php wp_nonce_field('orcid_nonce'); ?>
     <!-- need to replace table with CSS -->
-    <?php if ($success): ?>
-        <div class="updated"><p><?php echo  __('ORCiD ID updated.', 'orcid-data-block'); ?></p></div>
+    <?php if ($success) : ?>
+        <div class="updated"><p><?php echo __('ORCiD ID updated.', 'orcid-data-block'); ?></p></div>
     <?php endif; ?>
     <table>
         <tr>

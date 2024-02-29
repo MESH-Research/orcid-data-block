@@ -1,33 +1,33 @@
 {
-  "name": "mesh-research/orcid-data-block",
-  "type": "wordpress-plugin",
-  "authors": [
-    {
-      "name": "MESH Research",
-      "email": "mesh@msu.edu"
-    }
-  ],
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.9",
-    "wp-coding-standards/wpcs": "^3.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    },
-    "vendor-dir": "lib"
-  },
-  "scripts": {
-    "check-cs": [
-      "@php ./lib/squizlabs/php_codesniffer/bin/phpcs"
-    ],
-    "fix-cs": [
-      "@php ./lib/squizlabs/php_codesniffer/bin/phpcbf"
-    ]
-  },
-  "autoload": {
-    "psr-4": {
-      "MESH\\": "src"
-    }
-  }
+	"name": "mesh-research/orcid-data-block",
+	"type": "wordpress-plugin",
+	"authors": [
+		{
+			"name": "MESH Research",
+			"email": "mesh@msu.edu"
+		}
+	],
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.9",
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"vendor-dir": "lib"
+	},
+	"scripts": {
+		"check-cs": [
+			"@php ./lib/squizlabs/php_codesniffer/bin/phpcs"
+		],
+		"fix-cs": [
+			"@php ./lib/squizlabs/php_codesniffer/bin/phpcbf"
+		]
+	},
+	"autoload": {
+		"psr-4": {
+			"MESH\\": "src"
+		}
+	}
 }

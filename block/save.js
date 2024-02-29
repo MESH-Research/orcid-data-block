@@ -23,5 +23,5 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @param {Object} props.attributes Available block attributes.
  */
 export default function Save( { attributes } ) {
-  return null;
+	return null;
 }

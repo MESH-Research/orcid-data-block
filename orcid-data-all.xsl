@@ -30,22 +30,22 @@
 
     <!-- parameters -->
     <!-- NOTE: parameter values must be quoted if you want strings (and not XPath entries) -->
-    <xsl:param name="display_header" select="'yes'"/>
-    <xsl:param name="display_personal" select="'yes'"/>
-    <xsl:param name="display_education" select="'yes'"/>
-    <xsl:param name="display_employment" select="'yes'"/>
-    <xsl:param name="display_works" select="'yes'"/>
+    <xsl:param name="display_header" select="'1'"/>
+    <xsl:param name="display_personal" select="'1'"/>
+    <xsl:param name="display_education" select="'1'"/>
+    <xsl:param name="display_employment" select="'1'"/>
+    <xsl:param name="display_works" select="'1'"/>
     <!-- WP shortcode parameters that go with works section -->
     <xsl:param name="works_type" select="'all'"/>
     <xsl:param name="works_start_year" select="'1900'"/>
     <!-- -->
-    <xsl:param name="display_fundings" select="'yes'"/>
-    <xsl:param name="display_peer_reviews" select="'yes'"/>
-    <xsl:param name="display_invited_positions" select="'yes'"/>
-    <xsl:param name="display_memberships" select="'yes'"/>
-    <xsl:param name="display_qualifications" select="'yes'"/>
-    <xsl:param name="display_research_resources" select="'yes'"/>
-    <xsl:param name="display_services" select="'yes'"/>
+    <xsl:param name="display_fundings" select="'1'"/>
+    <xsl:param name="display_peer_reviews" select="'1'"/>
+    <xsl:param name="display_invited_positions" select="'1'"/>
+    <xsl:param name="display_memberships" select="'1'"/>
+    <xsl:param name="display_qualifications" select="'1'"/>
+    <xsl:param name="display_research_resources" select="'1'"/>
+    <xsl:param name="display_services" select="'1'"/>
 
     <!-- output format -->
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
@@ -55,13 +55,13 @@
         <article class="orcid_data--article">
 
             <!-- START: header-->
-            <xsl:if test="$display_header='yes'">
+            <xsl:if test="$display_header='1'">
                 <h1>ORCID Profile</h1>
             </xsl:if>
             <!-- END: header-->
 
             <!-- START: personal -->
-            <xsl:if test="$display_personal='yes'">
+            <xsl:if test="$display_personal='1'">
                 <section class="orcid_data--section orcid_data--biographical">
                     <h2>Biographical Information</h2>
 
@@ -150,7 +150,7 @@
             <!-- END: personal -->
 
             <!-- START: education -->
-            <xsl:if test="$display_education='yes'">
+            <xsl:if test="$display_education='1'">
                 <section class="orcid_data--section orcid_data--education">
                     <h2>Education</h2>
                     <xsl:choose>
@@ -174,7 +174,7 @@
             <!-- END: education -->
 
             <!-- START: employment -->
-            <xsl:if test="$display_employment='yes'">
+            <xsl:if test="$display_employment='1'">
                 <section class="orcid_data--section orcid_data--employment">
                     <h2>Employment</h2>
                     <xsl:choose>
@@ -211,7 +211,7 @@
             <!-- END: employmant -->
 
             <!-- START: works (activities-group) -->
-            <xsl:if test="$display_works='yes'">
+            <xsl:if test="$display_works='1'">
                 <section class="orcid_data--section orcid_data--work">
                     <h2>Works</h2>
                     <xsl:choose>
@@ -262,7 +262,7 @@
             <!-- END: works -->
 
             <!-- START: fundings -->
-            <xsl:if test="$display_fundings='yes'">
+            <xsl:if test="$display_fundings='1'">
                 <section class="orcid_data--section orcid_data--fundings">
                     <h2>Funding Sources</h2>
                     <xsl:choose>
@@ -304,7 +304,7 @@
             <!-- END: fundings -->
 
             <!-- START: peer-reviews -->
-            <xsl:if test="$display_peer_reviews='yes'">
+            <xsl:if test="$display_peer_reviews='1'">
                 <section class="orcid_data--section orcid_data--peer_reviews">
                     <h2>Peer Reviews</h2>
                     <xsl:choose>
@@ -333,7 +333,7 @@
             <!-- END: peer-reviews -->
 
             <!-- START: invited_positions -->
-            <xsl:if test="$display_invited_positions='yes'">
+            <xsl:if test="$display_invited_positions='1'">
                 <section class="orcid_data--section orcid_data--positions">
                     <h2>Invited Positions</h2>
                     <xsl:choose>
@@ -363,7 +363,7 @@
             <!-- END: invited_positions -->
 
             <!-- START: memberships -->
-            <xsl:if test="$display_memberships='yes'">
+            <xsl:if test="$display_memberships='1'">
                 <section class="orcid_data--section orcid_data--memberships">
                     <h2>Memberships</h2>
                     <xsl:choose>
@@ -387,7 +387,7 @@
             <!-- END: memberships -->
 
             <!-- START: qualifications -->
-            <xsl:if test="$display_qualifications='yes'">
+            <xsl:if test="$display_qualifications='1'">
                 <section class="orcid_data--section orcid_data--qualifications">
                     <h2>Qualifications</h2>
                     <xsl:choose>
@@ -416,7 +416,7 @@
 
                 we do know that there can be MULTIPLE <research-resource:research-resource-summary> within any <activities:group>
             -->
-            <xsl:if test="$display_research_resources='yes'">
+            <xsl:if test="$display_research_resources='1'">
                 <section class="orcid_data--section orcid_data--research_resources">
                     <h2>Research Resources</h2>
                     <!-- START LOOP on <activities:group> -->
@@ -463,7 +463,7 @@
             <!-- END: research_resources -->
 
             <!-- START: services -->
-            <xsl:if test="$display_services='yes'">
+            <xsl:if test="$display_services='1'">
                 <section class="orcid_data--section orcid_data--services">
                     <h2>Services</h2>
                     <xsl:choose>

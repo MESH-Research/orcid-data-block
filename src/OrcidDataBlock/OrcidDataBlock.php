@@ -102,7 +102,7 @@ class OrcidDataBlock {
      * @return void
      */
     public function register_shortcodes() {
-        add_shortcode('orcid_data', array( $this, 'render_shortcode' ));
+        add_shortcode('orcid-data', array( $this, 'render_shortcode' ));
     }
 
     /**
@@ -138,28 +138,11 @@ class OrcidDataBlock {
         $author = get_the_author_meta('ID', false);
 
         $data = $this->client->get_user($author);
-        echo $data;
-        $options                         = array(
-            'display_header'             => false,
-            'display_personal'           => false,
-            'display_education'          => false,
-            'display_employment'         => false,
-            'display_works'              => false,
-            'works_type'                 => 'all',
-            'works_start_year'           => '1900',
-            'display_fundings'           => false,
-            'display_peer_reviews'       => false,
-            'display_invited_positions'  => false,
-            'display_memberships'        => false,
-            'display_qualifications'     => false,
-            'display_research_resources' => false,
-            'display_services'           => false,
-        );
+
         $options[ "display_{$section}" ] = true;
         $options['works_type']           = $works_type;
         $options['works_start_year']     = $works_start_year;
 
-        return 'hellow!!!';
         return $this->formatter->to_html($data, $options);
     }
 
@@ -171,6 +154,7 @@ class OrcidDataBlock {
      * @param string $tag Tag.
      */
     public function render_shortcode( $atts = array(), $content = null, $tag = '' ) {
+
         // normalize attribute keys to lowercase.
         $atts = array_change_key_case(
             (array) $atts,

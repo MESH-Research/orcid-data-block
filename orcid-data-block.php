@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       ORCiD Data
- * Plugin URI:        https://commons.msu.edu/
+ * Plugin URI:        https://meshresearch.net/
  * Description:       Add ORCiD data to your site using shortcodes.
  * Requires at least: 5.9
  * Requires PHP:      8.0

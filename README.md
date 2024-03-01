@@ -1,4 +1,4 @@
-# WP Plugin for ORCiD Data
+# WordPress Plugin for ORCiD Data
 
 ## Description
 
@@ -6,13 +6,22 @@ The plugin pulls data from [ORCiD](http://orcid.org) based on the user's ORCiD I
 Any facet of the user's ORCiD can be added to WP pages or posts using WP shortcodes or as blocks
 using the Gutenberg block editor.
 
-## Prerequisite
+IMPORTANT: This plugin requires the XSL php extension to be installed.
+
+### Dedication
+
+This project continues the work originally started by Amaresh Joshi, a PhD student in the
+Linguistics Program at MSU who passed in 2022.  Amaresh was a valued colleague, scholar
+and collaborator.  This work and its continued development are dedicated to Amaresh's
+memory.
+
+## Development Prerequisites
 
 * git
 * npm
 * Docker or Docker Desktop
 
-## Installation
+## Installation for Development
 
 1. Clone this repository from GitHub onto your computer
 2. Open a command-line and navigate to the directory of the cloned repository
@@ -28,7 +37,7 @@ using the Gutenberg block editor.
 7. If using Docker Desktop, open it
 8. Run this command `docker-compose up --detach`
 
-## Wordpress Debugging
+## WordPress Debugging
 
 Edit `wp-config.php` to include
 
@@ -51,18 +60,18 @@ The plugin will create an ORCiD block.
 Shortcodes used with the ORCiD plugin take the form `[orcid-data section="section_name"]`
 where section_name is one of the following:
 
-- `header`
-- `personal`
-- `education`
-- `employment`
-- `works`
-- `fundings`
-- `peer_reviews`
-- `invited_positions`
-- `memberships`
-- `qualifications`
-- `research_resources`
-- `services`
+* `header`
+* `personal`
+* `education`
+* `employment`
+* `works`
+* `fundings`
+* `peer_reviews`
+* `invited_positions`
+* `memberships`
+* `qualifications`
+* `research_resources`
+* `services`
 
 In addition, when the section_name is `works` two additional optional attributes can be specified:
 
@@ -70,8 +79,8 @@ In addition, when the section_name is `works` two additional optional attributes
 
 Both attributes are optional with default values.
 
-- `works_type` = include only works of that type (default is `all`)
-- `works_start_year` = include only works with a published year greater than or equal to
+* `works_type` = include only works of that type (default is `all`)
+* `works_start_year` = include only works with a published year greater than or equal to
   the start year (default is `1900`)
 
 [List of available work types](https://github.com/ORCID/orcid-model/blob/master/src/main/java/org/orcid/jaxb/model/common/WorkType.java)

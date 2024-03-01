@@ -90,8 +90,7 @@ class OrcidDataBlock {
             ORCID_DATA_BLOCK_DIR . DIRECTORY_SEPARATOR . 'build',
             array(
                 'api_version' => 2,
-                'render_callback',
-                array( $this, 'render_block' ),
+                'render_callback' => array( $this, 'render_block' ),
             )
         );
     }
@@ -145,7 +144,7 @@ class OrcidDataBlock {
         $options['works_type']           = $works_type;
         $options['works_start_year']     = $works_start_year;
 
-        return $this->formatter->to_html($data, $options);
+        return $this->formatter->to_html($data['xml'], $options);
     }
 
     /**
@@ -188,7 +187,7 @@ class OrcidDataBlock {
 
         $this->formatter->set_options($options);
 
-        return $this->formatter->to_html($data);
+        return $this->formatter->to_html($data['xml']);
     }
 
     /**

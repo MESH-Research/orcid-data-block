@@ -18,8 +18,9 @@ interface CacheContract {
      * Get a key from cache.
      *
      * @param string $key The key to fetch.
+     * @return mixed
      */
-    public function get( string $key ): string;
+    public function get( string $key ): mixed;
 
     /**
      * Save a value to the cache.

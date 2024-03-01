@@ -67,10 +67,10 @@ class Controller {
     /**
      * Handle the view
      *
-     * @param array ...$deps Dependencies for the controller to be passed to its constructor.
+     * @param mixed ...$deps Dependencies for the controller to be passed to its constructor.
      * @return Controller
      */
-    public static function startup( array ...$deps ): Controller {
+    public static function startup( ...$deps ): Controller {
         if (null === self::$instance) {
             self::$instance = new static(...$deps);
         }

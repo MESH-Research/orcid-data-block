@@ -26,8 +26,24 @@
             </td>
         </tr>
         <tr>
-        <td><input type="submit" name="submit" value="Update" class="button-primary" /></td>
+        <td>            <input type="submit" name="submit" value="Update" class="button-primary" /></td>
+
         </tr>
     </table>
     </form>
+
+    <h2>Your ORCiD Profile</h2>
+    <?php if (!empty($orcid_data)) : ?>
+      <?php if (!empty($orcid_data['fetched'])) : ?>
+        <?php
+          $fetched = new \DateTime();
+          $fetched->setTimestamp($orcid_data['fetched']);
+        ?>
+
+
+          <p>Last downloaded: <?php echo esc_html($fetched->format('Y-m-d H:i:s e')); ?></p>
+        <?php endif; ?>
+      <p>Here is the data from your ORCiD profile:</p>
+      <pre><?php echo esc_html($orcid_data['xml']); ?></pre>
+    <?php endif; ?>
 </div>

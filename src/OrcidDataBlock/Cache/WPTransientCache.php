@@ -36,8 +36,9 @@ class WPTransientCache implements CacheContract {
      * Get a key from cache.
      *
      * @param string $key The key to fetch.
+     * @return mixed
      */
-    public function get( string $key ): string {
+    public function get( string $key ): mixed {
         return get_transient($key);
     }
 

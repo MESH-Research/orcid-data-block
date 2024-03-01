@@ -42,7 +42,9 @@ class AdminController extends Controller {
         $this->set('orcid_id', '');
 
         if (! empty(get_user_meta($user, '_orcid_id', true))) {
-                $this->set('orcid_id', get_user_meta($user, '_orcid_id', true));
+            $orcid_id = get_user_meta($user, '_orcid_id', true);
+            $this->set('orcid_id', $orcid_id);
+            $this->set('orcid_data', $this->client->get($orcid_id));
         }
 
         if (isset($_POST['submit'])) {
@@ -58,18 +60,22 @@ class AdminController extends Controller {
                 $new_id = $_POST['orcid_id'];
                 if (!preg_match('/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/', $new_id)) {
                     $this->set('orcid_error', __('The ORCiD does not seem to be a valid format.', 'orcid-data-block'));
-                    return;
+                    return null;
                 }
                 // Fetch the orcid data to confirm that the orcid id is valid.
                 $data = $this->client->get($new_id, true);
                 if (false === $data) {
                     $this->set('orcid_error', __('The ORCiD supplied does not exist.', 'orcid-data-block'));
-                    return;
+                    return null;
                 }
-                $this->set('orcid_id', $new_id);
                 update_user_meta($user, '_orcid_id', $new_id);
+
+                $this->set('orcid_id', $new_id);
+                $this->set('orcid_data', $data);
                 $this->set('success', true);
+
             }
         }
+        return null;
     }
 }

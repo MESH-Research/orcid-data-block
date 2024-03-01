@@ -8,6 +8,7 @@ Requires PHP: 8.0
 Stable Tag: 1.0.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Display ORCiD profile data using a WordPress block or shortcode.
 
 # WordPress Plugin for displaying ORCiD Data
 

@@ -48,7 +48,7 @@ class OrcidDataBlock {
      *
      * @return OrcidDataBlock
      */
-    public static function boot( ClientContract $client, FormatterContract $formatter ) {
+    public static function boot( ClientContract $client, FormatterContract $formatter ): OrcidDataBlock {
         if (null === self::$instance) {
             self::$instance = new static($client, $formatter);
         }
@@ -75,7 +75,7 @@ class OrcidDataBlock {
      *
      * @return void
      */
-    public function init() {
+    public function init(): void {
         $this->register_block();
         $this->register_shortcodes();
     }
@@ -85,7 +85,7 @@ class OrcidDataBlock {
      *
      * @return void
      */
-    public function register_block() {
+    public function register_block(): void {
         register_block_type(
             ORCID_DATA_BLOCK_DIR . DIRECTORY_SEPARATOR . 'build',
             array(
@@ -101,7 +101,7 @@ class OrcidDataBlock {
      *
      * @return void
      */
-    public function register_shortcodes() {
+    public function register_shortcodes(): void {
         add_shortcode('orcid-data', array( $this, 'render_shortcode' ));
     }
 
@@ -110,7 +110,7 @@ class OrcidDataBlock {
      *
      * @return void
      */
-    public function register_admin_menu() {
+    public function register_admin_menu(): void {
         add_menu_page(
             'My ORCiD Retrieval and Display Information',
             'My ORCiD Profile',
@@ -125,8 +125,10 @@ class OrcidDataBlock {
      *
      * @param array  $block_attributes Attributes.
      * @param string $content Content.
+     *
+     * @return string
      */
-    public function render_block( $block_attributes, $content ) {
+    public function render_block( array $block_attributes, string $content ): string {
 
         $section          = $block_attributes['section'];
         $works_start_year = $block_attributes['worksStartYear'];
@@ -152,8 +154,10 @@ class OrcidDataBlock {
      * @param array  $atts Attributes.
      * @param string $content Content.
      * @param string $tag Tag.
+     *
+     * @return string
      */
-    public function render_shortcode( $atts = array(), $content = null, $tag = '' ) {
+    public function render_shortcode( array $atts = array(), string $content = null, string $tag = '' ): string {
 
         // normalize attribute keys to lowercase.
         $atts = array_change_key_case(
@@ -190,7 +194,7 @@ class OrcidDataBlock {
     /**
      * Render the settings form for the users Orcid ID
      */
-    public function admin_settings_form() {
+    public function admin_settings_form(): void {
         AdminController::startup($this->client)
             ->handle('settings_page');
     }
@@ -198,14 +202,14 @@ class OrcidDataBlock {
     /**
      * Activates the OrcidDataBlock plugin.
      */
-    public function activate() {
+    public function activate(): void {
         // TODO: Make cache time configurable in plugin settings.
     }
 
     /**
      * Deactivates the OrcidDataBlock plugin
      */
-    public function deactivate() {
+    public function deactivate(): void {
         // TODO: Remove cache time configuration in plugin settings.
     }
 }

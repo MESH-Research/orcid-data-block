@@ -36,7 +36,7 @@ class AdminController extends Controller {
      *
      * @return mixed
      */
-    public function settings_page() {
+    public function settings_page(): mixed {
         $user_ob = wp_get_current_user();
         $user    = $user_ob->ID;
         $this->set('orcid_id', '');

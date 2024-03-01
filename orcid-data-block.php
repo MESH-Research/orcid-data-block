@@ -2,16 +2,16 @@
 /**
  * Plugin Name:       ORCiD Data
  * Plugin URI:        https://commons.msu.edu/
- * Description:       Data from ORCiD.org
+ * Description:       Add ORCiD data to your site using shortcodes.
  * Requires at least: 5.9
- * Requires PHP:      7.0
- * Version:           0.1.0
+ * Requires PHP:      8.0
+ * Version:           1.0.0
  * Author:            Amaresh R Joshi
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       orcid-data-block
  *
- * @package           orcid
+ * @package           OrcidDataBlock
  */
 
 // If this file is called directly, abort.

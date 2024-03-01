@@ -48,7 +48,7 @@ class BaseFormatter {
      * @param array $options The options to be passed to the XSLTProcessor.
      * @return void
      */
-    public function set_options( $options ) {
+    public function set_options( array $options ): void {
         $this->options = array_merge($this->default_options, $options);
     }
 
@@ -59,7 +59,7 @@ class BaseFormatter {
      * @param mixed  $value The option value.
      * @return void
      */
-    public function set_option( $key, $value ) {
+    public function set_option( string $key, mixed $value ): void {
         $this->options[ $key ] = $value;
     }
 

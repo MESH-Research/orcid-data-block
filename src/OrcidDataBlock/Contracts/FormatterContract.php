@@ -17,7 +17,7 @@ interface FormatterContract {
      * @param array  $options The options for rendering output.
      * @return string
      */
-    public function to_html( $data, $options = array() ): string;
+    public function to_html( string $data, array $options = array() ): string;
 
     /**
      * Set the options to be passed to the XSLTProcessor.
@@ -25,7 +25,7 @@ interface FormatterContract {
      * @param array $options The options to be passed to the XSLTProcessor.
      * @return void
      */
-    public function set_options( $options );
+    public function set_options( array $options ): void;
 
     /**
      * Set a single option.
@@ -34,5 +34,5 @@ interface FormatterContract {
      * @param mixed  $value The option value.
      * @return void
      */
-    public function set_option( $key, $value );
+    public function set_option( string $key, mixed $value ): void;
 }

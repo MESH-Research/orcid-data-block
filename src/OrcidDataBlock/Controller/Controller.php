@@ -42,17 +42,16 @@ class Controller {
      * Render the template
      *
      * @param string $template Template slug.
-     * @return void
+     * @return string
      */
-    public function render( $template ) {
+    public function render( string $template ): string {
         ob_start();
 
         //phpcs:ignore WordPress.PHP.DontExtract.extract_extract
         extract($this->data);
         require $this->get_view_path($template);
 
-        echo ob_get_clean();
-        return;
+        return ob_get_clean();
     }
 
     /**
@@ -61,7 +60,7 @@ class Controller {
      * @param string $template Template slug.
      * @return string
      */
-    private function get_view_path( $template ) {
+    private function get_view_path( string $template ): string {
         return ORCID_DATA_BLOCK_DIR . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $template . '.php';
     }
 
@@ -71,7 +70,7 @@ class Controller {
      * @param array ...$deps Dependencies for the controller to be passed to its constructor.
      * @return Controller
      */
-    public static function startup( ...$deps ) {
+    public static function startup( array ...$deps ): Controller {
         if (null === self::$instance) {
             self::$instance = new static(...$deps);
         }
@@ -83,7 +82,7 @@ class Controller {
      *
      * @param string $view View method.
      */
-    public function handle( $view ) {
+    public function handle( string $view ): void {
         $output = self::$instance->$view();
 
         if (!empty($output)) {

@@ -43,7 +43,7 @@ class XslFormatter extends BaseFormatter implements FormatterContract {
      * @param array  $options The options to be passed to the XSLTProcessor.
      * @return string The converted HTML string.
      */
-    public function to_html( $data, $options = array() ): string {
+    public function to_html( string $data, array $options = array() ): string {
         $options = array_merge($this->options, $options);
 
         $xml_doc = new DOMDocument();

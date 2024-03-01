@@ -44,9 +44,9 @@ class OrcidClient implements ClientContract {
      *
      * @param string  $orcid Orcid.
      * @param boolean $force Bust the cache.
-     * @return string
+     * @return string|false
      */
-    public function get( $orcid, $force = false ) {
+    public function get( string $orcid, bool $force = false ): string|false {
         if (!$force) {
             $cached = $this->cache->get($this->get_transient_key($orcid));
             if ($cached) {
@@ -70,7 +70,7 @@ class OrcidClient implements ClientContract {
      * @param string $orcid Orcid.
      * @return string
      */
-    protected function fetch( $orcid ) {
+    protected function fetch( string $orcid ): string|false {
         $response = wp_remote_get('https://pub.orcid.org/v3.0/' . $orcid);
         if (is_wp_error($response)) {
             return false;
@@ -87,7 +87,7 @@ class OrcidClient implements ClientContract {
      * @param boolean $force Bust the cache.
      * @return string
      */
-    public function get_current_user( $force = false ) {
+    public function get_current_user( bool $force = false ): string|false {
         $user = wp_get_current_user();
 
         return $this->get_user($user->ID, $force);
@@ -96,11 +96,11 @@ class OrcidClient implements ClientContract {
     /**
      * Get a specified user's orcid data
      *
-     * @param string  $user_id User ID.
-     * @param boolean $force Bust the cache.
+     * @param string|int $user_id User ID.
+     * @param boolean    $force Bust the cache.
      * @return string
      */
-    public function get_user( $user_id, $force = false ) {
+    public function get_user( string|int $user_id, bool $force = false ): string|false {
         $orcid_id = get_user_meta($user_id, '_orcid_id', true);
 
         return $this->get($orcid_id, $force);
@@ -112,7 +112,7 @@ class OrcidClient implements ClientContract {
      * @param string $orcid Orcid.
      * @return string
      */
-    public function get_transient_key( $orcid ) {
+    public function get_transient_key( string $orcid ): string {
         return $this->transient_prefix . $orcid;
     }
 }

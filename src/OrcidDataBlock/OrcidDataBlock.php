@@ -111,8 +111,8 @@ class OrcidDataBlock {
      */
     public function register_admin_menu(): void {
         add_menu_page(
-            'My ORCiD Retrieval and Display Information',
-            'My ORCiD Profile',
+            'My ORCID Retrieval and Display Information',
+            'My ORCID Profile',
             'edit_posts',
             'orcid_data_block_settings',
             array( $this, 'admin_settings_form' )

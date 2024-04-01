@@ -3,10 +3,10 @@
 	"apiVersion": 2,
 	"name": "orcid/orcid-data-block",
 	"version": "0.1.0",
-	"title": "ORCiD Data",
+	"title": "ORCID Data",
 	"category": "embed",
 	"icon": "info-outline",
-	"description": "Add your information from ORCiD.org to your pages.",
+	"description": "Add your information from ORCID.org to your pages.",
 	"supports": {
 		"html": false
 	},

@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       ORCiD Data Block
+ * Plugin Name:       ORCID Data Block
  * Plugin URI:        https://meshresearch.net/
- * Description:       Add ORCiD data to your site using shortcodes and the block editor.
+ * Description:       Add ORCID data to your site using shortcodes and the block editor.
  * Requires at least: 5.9
  * Tested up to:      6.4.3
  * Requires PHP:      8.0
@@ -50,7 +50,7 @@ if (!extension_loaded('xsl')) {
          * @return void
          */
         function orcid_data_block_admin_notice() {
-            $notice = '<strong>' . __('ORCiD Data requires the PHP XSL extension to be enabled.  It is not enabled, so the plugin has been deactivated.', 'orcid-data-block') . '</strong>';
+            $notice = '<strong>' . __('ORCID Data requires the PHP XSL extension to be enabled.  It is not enabled, so the plugin has been deactivated.', 'orcid-data-block') . '</strong>';
             ?>
         <div class="updated"><p><?php echo $notice; ?></p></div>
             <?php

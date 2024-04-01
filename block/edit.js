@@ -52,7 +52,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...blockProps }>
 			<RadioControl
-				label={ 'Please select an ORCiD section' }
+				label={ 'Please select an ORCID section' }
 				options={ [
 					{ label: 'Education', value: 'education' },
 					{ label: 'Employment', value: 'employment' },

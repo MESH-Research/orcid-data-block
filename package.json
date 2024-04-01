@@ -1,7 +1,7 @@
 {
   "name": "orcid-data-block",
   "version": "1.0.0",
-  "description": "Block editing of Data from ORCiD",
+  "description": "Block editing of Data from ORCID",
   "author": "The WordPress Contributors",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",

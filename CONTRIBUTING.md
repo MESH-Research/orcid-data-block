@@ -34,7 +34,7 @@ define( 'SAVEQUERIES', true );
 define( 'WP_DEBUG_DISPLAY', true );
 ```
 
-# Docker Development Instructions for WP ORCiD Plugin
+# Docker Development Instructions for WP ORCID Plugin
 
 ## Steps
 

@@ -1,21 +1,21 @@
-=== ORCiD Data Block ===
+=== ORCID Data Block ===
 Contributors: adamsbmsu
 Donate link: https://meshresearch.net/
-Tags: ORCiD
+Tags: ORCID
 Requires at least: 5.9
 Tested up to: 6.4.3
 Requires PHP: 8.0
 Stable Tag: 1.0.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Display ORCiD profile data using a WordPress block or shortcode.
+Display ORCID profile data using a WordPress block or shortcode.
 
-# WordPress Plugin for displaying ORCiD Data
+# WordPress Plugin for displaying ORCID Data
 
 ## Description
 
-This plugin pulls data from [ORCiD](http://orcid.org) based on the user's ORCiD ID.
-Any facet of the user's ORCiD can be added to WP pages or posts using WP shortcodes or as blocks
+This plugin pulls data from [ORCID](http://orcid.org) based on the user's ORCID ID.
+Any facet of the user's ORCID can be added to WP pages or posts using WP shortcodes or as blocks
 using the Gutenberg block editor.
 
 IMPORTANT: This plugin requires the XSL php extension to be installed.
@@ -29,11 +29,11 @@ memory.
 
 ## Block Editing
 
-The plugin will create an ORCiD block.
+The plugin will create an ORCID block.
 
 ## Shortcodes
 
-Shortcodes used with the ORCiD plugin take the form `[orcid-data section="section_name"]`
+Shortcodes used with the ORCID plugin take the form `[orcid-data section="section_name"]`
 where section_name is one of the following:
 
 * `header`

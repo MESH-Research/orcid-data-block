@@ -23,7 +23,7 @@ IMPORTANT: This plugin requires the XSL php extension to be installed.
 ## Dedication
 
 This project continues the work originally started by Amaresh Joshi, a PhD student in the
-Linguistics Program at MSU who passed in 2022.  Amaresh was a valued colleague, scholar
+Linguistics Program at MSU, and member of the MESH Research team who passed in 2022.  Amaresh was a valued colleague, scholar
 and collaborator.  This work and its continued development are dedicated to Amaresh's
 memory.
 

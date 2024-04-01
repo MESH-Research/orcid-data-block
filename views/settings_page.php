@@ -13,11 +13,11 @@
     <?php wp_nonce_field('orcid_nonce'); ?>
     <!-- need to replace table with CSS -->
     <?php if (!empty($success)) : ?>
-        <div class="updated"><p><?php echo __('ORCID ID updated.', 'orcid-data-block'); ?></p></div>
+        <div class="updated"><p><?php echo __('ORCID iD updated.', 'orcid-data-block'); ?></p></div>
     <?php endif; ?>
     <table>
         <tr>
-        <td><label for="orcid_id">ORCID ID</label></td>
+        <td><label for="orcid_id">ORCID iD</label></td>
         <td>
             <input type="text" name="orcid_id" id="orcid_id" value="<?php echo esc_attr($orcid_id); ?>">
             <?php if (!empty($orcid_error)) : ?>

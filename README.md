@@ -14,7 +14,7 @@ Display ORCID profile data using a WordPress block or shortcode.
 
 ## Description
 
-This plugin pulls data from [ORCID](http://orcid.org) based on the user's ORCID ID.
+This plugin pulls data from [ORCID](http://orcid.org) based on the user's ORCID iD.
 Any facet of the user's ORCID can be added to WP pages or posts using WP shortcodes or as blocks
 using the Gutenberg block editor.
 

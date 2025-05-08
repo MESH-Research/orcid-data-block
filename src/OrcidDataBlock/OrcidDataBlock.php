@@ -133,8 +133,11 @@ class OrcidDataBlock {
         $works_start_year = $block_attributes['worksStartYear'];
         $works_type       = $block_attributes['worksType'];
 
-
-        $section = strtolower($section);
+        if ($section) {
+            $section = strtolower($section);
+        } else {
+            $section = '';
+        }
 
         $author = get_the_author_meta('ID', false);
 
